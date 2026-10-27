@@ -32,7 +32,12 @@ public class RedisDemo {
         System.out.println("连接并操作Redis完成!");
     }
 
-    static RedisOrder redisOrder = new RedisOrder();
+    static RedisGenericOrder redisGenericOrder = new RedisGenericOrder();
+    static RedisStringOrder redisStringOrder = new RedisStringOrder();
+    static RedisListOrder redisListOrder = new RedisListOrder();
+    static RedisSetOrder redisSetOrder = new RedisSetOrder();
+    static RedisHashOrder redisHashOrder = new RedisHashOrder();
+    static RedisZSetOrder redisZSetOrder = new RedisZSetOrder();
 
     public static void main(String[] args) {
         ConnectionPoolConfig poolConfig = new ConnectionPoolConfig();
@@ -40,12 +45,44 @@ public class RedisDemo {
         poolConfig.setMaxIdle(8);  // 最大空闲连接数
         poolConfig.setMinIdle(0);  // 最小空闲连接数
 
-        try(RedisClient client = RedisClient.builder()
-                .hostAndPort("localhost",8888)
+        try (RedisClient client = RedisClient.builder()
+                .hostAndPort("localhost", 8888)
                 .poolConfig(poolConfig).build()) {
-            //redisOrder.setAndGetTest(client);
-            //redisOrder.existsAndDel(client);
-            redisOrder.keys(client);
+//            redisGenericOrder.setAndGetTest(client);
+//            redisGenericOrder.existsAndDel(client);
+//            redisGenericOrder.keys(client);
+//            redisGenericOrder.expireAndTtlAndType(client);
+//
+//            redisStringOrder.mgetAndMset(client);
+//            redisStringOrder.getrangeAndsetrange(client);
+//            redisStringOrder.append(client);
+//            redisStringOrder.incrAndDecr(client);
+
+//            redisListOrder.lpushAndLrange(client);
+//            redisListOrder.rpush(client);
+//            redisListOrder.lpop(client);
+//            redisListOrder.rpop(client);
+//            redisListOrder.blpop(client);
+//            redisListOrder.llen(client);
+
+//            redisSetOrder.saddAndSmembers(client);
+//            redisSetOrder.sismember(client);
+//            redisSetOrder.scard(client);
+//            redisSetOrder.spop(client);
+//            redisSetOrder.sinter(client);
+//            redisSetOrder.sinterstore(client);
+
+//            redisHashOrder.hsetAndHget(client);
+//            redisHashOrder.hexists(client);
+//            redisHashOrder.hdel(client);
+//            redisHashOrder.hkeysAndHvals(client);
+//            redisHashOrder.hmgetAndHmset(client);
+
+//            redisZSetOrder.zaddAndZrange(client);
+//            redisZSetOrder.zcard(client);
+//            redisZSetOrder.zrem(client);
+//            redisZSetOrder.zscore(client);
+//            redisZSetOrder.zrank(client);
         }
     }
 }

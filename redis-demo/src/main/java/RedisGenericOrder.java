@@ -1,9 +1,9 @@
-import redis.clients.jedis.ConnectionPoolConfig;
 import redis.clients.jedis.RedisClient;
 
 import java.util.Set;
 
-public class RedisOrder {
+//通用命令
+public class RedisGenericOrder {
 
 
     public void setAndGetTest(RedisClient client) {
@@ -40,6 +40,17 @@ public class RedisOrder {
         //redis当中的key不能重复,而且不在意顺序
         Set<String> keys = client.keys("*");
         System.out.println(keys);
+    }
+
+    public void expireAndTtlAndType(RedisClient client) {
+        client.flushAll();
+        System.out.println("expire and ttl and type");
+        client.set("key","111");
+        client.expire("key", 60);
+        long time = client.ttl("key");
+        String type = client.type("key");
+        System.out.println("time :"+ time);
+        System.out.println("type :" +type);
     }
 
 }
